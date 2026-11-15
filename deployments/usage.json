@@ -5,6 +5,15 @@
   "account": "0x766021EF474Bac02a206A53841099031a9B8E290",
   "steps": [
     {
+      "label": "Deposit 0 — 0.5 QOR, 90s lock",
+      "functionName": "deposit",
+      "args": "[\"1794770528\"]",
+      "value": "500000000000000000",
+      "tx": "0x786c018db2e3fe7e63e24f02ca6e8bb9728a9409d04505e967996988496dedcd",
+      "cosmosTx": "289B748CA20CA1F50F767DA31BDFDD8B3309919179B799295279EF26803C9949",
+      "block": 10151260
+    },
+    {
       "label": "Deposit 1 — 0.5 QOR, 90s lock",
       "functionName": "deposit",
       "args": "[\"1794770605\"]",

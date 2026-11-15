@@ -142,7 +142,7 @@ by the verified on-chain run (`deployments/usage.json`).
 | `npm run build` (frontend) | Passes |
 | No secrets in repo / git history | Checked (see below) |
 | Testnet deploy | **Done 15 Nov 2026** — contract `0x0abdb86b…715a`, deploy tx `0x5821fcc…a1ddf` |
-| On-chain usage | **Done** — 4 deposits (1.4 QOR), standard withdrawal `0xd88353bf…`, proof withdrawal `0xbb908fc5…` (ML-DSA-87 signature verified on chain) |
+| On-chain usage | **Done** — 5 deposits (1.5 QOR), 3 withdrawals (1.15 QOR): standard `0xd88353bf…`, proof `0xbb908fc5…` (ML-DSA-87 signature verified on chain), standard in demo video `0x63a7e34a…`; 0.35 QOR still locked across 2 locks |
 | Demo video (real recording) | Done + verified on-chain |
 | Live demo (GitHub Pages) | Done — https://andipangeranm142.github.io/quantum-vault/ |
 

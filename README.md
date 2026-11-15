@@ -42,6 +42,7 @@ All of it is real on-chain usage by the deployer account, recorded in
 
 | Step | Amount | Result |
 | --- | --- | --- |
+| Deposit, 90s lock (first usage run) | 0.5 QOR | lock 0 |
 | Deposit, 90s lock | 0.5 QOR | lock 1 |
 | Deposit, 7-day lock | 0.25 QOR | lock 2 (still locked) |
 | Deposit, 90s lock | 0.15 QOR | lock 3 |
