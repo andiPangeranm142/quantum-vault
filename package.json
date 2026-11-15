@@ -1,0 +1,46 @@
+{
+  "name": "quantum-vault",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Quantum Vault: a time-locked savings vault on the QoreChain testnet (qorechain-diana). Deposits lock until a chosen unlock time; withdrawals require post-quantum authorization \u2014 a scoped EVM window, a registered ML-DSA-87 key verified on-chain via the pqcKeyStatus precompile, and an optional ML-DSA-87 signature over the withdrawal intent verified via pqcVerify.",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.app.json",
+    "window": "tsx --env-file=../.env scripts/window.ts",
+    "deploy": "tsx --env-file=../.env scripts/deploy.ts",
+    "usage": "tsx --env-file=../.env scripts/usage.ts",
+    "gen-abi": "tsx scripts/gen-abi.ts",
+    "dev": "vite",
+    "build": "tsc --noEmit -p tsconfig.app.json && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@cosmjs/stargate": "^0.39.0",
+    "@qorechain/evm": "^0.14.0",
+    "@qorechain/qorex-rainbowkit": "^0.1.0",
+    "@qorechain/sdk": "^0.14.0",
+    "@rainbow-me/rainbowkit": "^2.2.11",
+    "@tanstack/react-query": "^5.59.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "viem": "^2.0.0",
+    "wagmi": "^2.19.5"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@types/chai": "^4.3.20",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.7.5",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "chai": "^4.4.1",
+    "ethers": "^6.13.4",
+    "hardhat": "^2.22.17",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.0"
+  }
+}
