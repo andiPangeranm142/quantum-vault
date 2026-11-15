@@ -68,8 +68,11 @@ owner's own key) and from the author's own Quantum Flip (a coin-flip game).
   Flip frontend pattern.
 - `README.md`, this file, `.gitignore`, `.env.example`, `LICENSE`
   (Apache-2.0 text).
-- `docs/demo.mp4` — recorded with Playwright (real app, real testnet
-  transactions); `docs/featured.png` — generated featured image.
+- `docs/demo.mp4` — recorded with Playwright in one take (real app, real
+  testnet transactions, 1080p, 100.8 s, burned-in captions; the recording
+  pipeline — wallet bridge, recorder, render script — lives outside this
+  repo next to the project workspace); `docs/featured.png` — generated
+  featured image.
 
 ## Debugging the AI did (and how)
 
@@ -101,6 +104,19 @@ error output and source rather than guessing:
    first deployment, `0x0abdb86b…715a`, which holds all the usage. The
    first run's deposit (lock 0, 0.5 QOR) was withdrawn live in the demo
    video instead of by the script.
+5. **The video's first take failed its own safety check.** The record
+   script checked for the lock list immediately after the "Post-quantum
+   key: registered" line appeared — but the locks query resolves a few
+   seconds later (separate wagmi query). Fix: wait explicitly for the
+   lock list before checking, and fail loudly if lock 0 is not unlocked.
+   A second issue in the same take: the app's "EVM window: live" line
+   reads the native-lane REST API through the dev server's proxy, and
+   vite preview's proxy cannot reach it (it does not use the sandbox
+   egress proxy). Fix for the recording only: a small Node server that
+   serves the built app and proxies the REST calls through the egress
+   proxy via a manual CONNECT tunnel. The deployed Pages demo is
+   unaffected — its window line degrades gracefully, as documented in
+   the README.
 
 All fixes are covered by the passing test suite (`npm test`: 25/25) and
 by the verified on-chain run (`deployments/usage.json`).

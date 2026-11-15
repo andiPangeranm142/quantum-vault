@@ -48,13 +48,31 @@
       "tx": "0xbb908fc59818dc90f84c520f6ab6ba8d13aa2d0c007ccbb66fca195fbaf50a2a",
       "cosmosTx": "A350589929B9021F54DA2F390700F08CBA94D5BA5F8A9533693B35F8543D61E9",
       "block": 10151383
+    },
+    {
+      "label": "Withdraw lock 0 (standard, live in demo video)",
+      "functionName": "withdraw",
+      "args": "[\"0\"]",
+      "value": "0",
+      "tx": "0x63a7e34ad7eb06de1c74dfd830ea457d704d64349e48bd65e26f3e3850ae1738",
+      "cosmosTx": "24C7739BB8A0DCD00D93B883DFBAA44AAC369096BE04B329FD342F6C908BC9DA",
+      "block": 10151923
+    },
+    {
+      "label": "Deposit 4 — 0.1 QOR, 5-min lock (live in demo video)",
+      "functionName": "deposit",
+      "args": "[\"1794771698\"]",
+      "value": "100000000000000000",
+      "tx": "0xcc83668d6107434e612e926c6242ef8eabb8dda3afa1e8f6683263d7d7ab4cf7",
+      "cosmosTx": "28339BCC7E7D065407DEE4B1D93C96FD4CBF883A3675EF93637510AA27A3E1B0",
+      "block": 10151933
     }
   ],
   "totals": {
-    "totalLockedQor": "0.75",
-    "totalDepositedQor": "1.4",
-    "totalWithdrawnQor": "0.65",
-    "lockCount": 4
+    "totalLockedQor": "0.35",
+    "totalDepositedQor": "1.5",
+    "totalWithdrawnQor": "1.15",
+    "lockCount": 5
   },
   "locks": [
     {
@@ -62,7 +80,7 @@
       "amountQor": "0.5",
       "unlockTime": 1794770528,
       "unlockTimeIso": "2026-11-15T19:22:08.000Z",
-      "withdrawn": false
+      "withdrawn": true
     },
     {
       "lockId": 1,
@@ -84,7 +102,14 @@
       "unlockTime": 1794770605,
       "unlockTimeIso": "2026-11-15T19:23:25.000Z",
       "withdrawn": true
+    },
+    {
+      "lockId": 4,
+      "amountQor": "0.1",
+      "unlockTime": 1794771698,
+      "unlockTimeIso": "2026-11-15T19:41:38.000Z",
+      "withdrawn": false
     }
   ],
-  "recordedAt": "2026-11-15T19:23:36.645Z"
+  "recordedAt": "2026-11-15T19:40:54.304Z"
 }

@@ -47,10 +47,12 @@ All of it is real on-chain usage by the deployer account, recorded in
 | Deposit, 90s lock | 0.15 QOR | lock 3 |
 | Withdraw lock 1 (standard) | 0.5 QOR | `0xd88353bf…2bdf74` |
 | Withdraw lock 3 (with ML-DSA-87 proof) | 0.15 QOR | `0xbb908fc5…50a2a` |
+| Withdraw lock 0 (standard, live in the demo video) | 0.5 QOR | `0x63a7e34a…e1738` |
+| Deposit, 5-min lock (live in the demo video) | 0.1 QOR | lock 4 |
 
-Totals after the run: 1.4 QOR deposited, 0.65 QOR withdrawn, 0.75 QOR locked
-across 4 locks. (An earlier 0.5 QOR deposit, lock 0, is the one withdrawn
-live in the demo video.)
+Totals after the video run: 1.5 QOR deposited, 1.15 QOR withdrawn, 0.35 QOR
+locked across 5 locks. Lock 2 (0.25 QOR, 7-day lock) is still locked; lock 4
+(0.1 QOR, 5-minute lock) unlocks 5 minutes after the video deposit.
 
 ## How it works
 

@@ -6,3 +6,6 @@ typechain-types
 .env
 .env.*
 !.env.example
+
+# media generation receipts (tool artifacts)
+docs/media-generation-*.json
