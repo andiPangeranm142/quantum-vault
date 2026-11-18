@@ -10,6 +10,8 @@
     "window": "tsx --env-file=../.env scripts/window.ts",
     "deploy": "tsx --env-file=../.env scripts/deploy.ts",
     "usage": "tsx --env-file=../.env scripts/usage.ts",
+    "check-state": "tsx --env-file=../.env scripts/check-state.ts",
+    "withdraw-lock4": "tsx --env-file=../.env scripts/withdraw-lock4.ts",
     "gen-abi": "tsx scripts/gen-abi.ts",
     "dev": "vite",
     "build": "tsc --noEmit -p tsconfig.app.json && vite build",

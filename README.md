@@ -51,13 +51,25 @@ All of it is real on-chain usage by the deployer account, recorded in
 | Withdraw lock 0 (standard, live in the demo video) | 0.5 QOR | `0x63a7e34a…e1738` |
 | Deposit, 5-min lock (live in the demo video) | 0.1 QOR | lock 4 |
 | Deposit, 30-day lock (Q-Day Drill proof, drill account) | 0.5 QOR | drill-account lock 0, unlocks 2026-12-18 |
+| Withdraw lock 4 (with ML-DSA-87 proof) | 0.1 QOR | `0xfb7f4f1c…f183ec` |
 
-Totals after the Q-Day Drill (18 Nov 2026): 2.0 QOR deposited, 1.15 QOR
-withdrawn, 0.85 QOR locked across 6 locks. Lock 2 (0.25 QOR, 7-day lock)
-is still locked; lock 4 (0.1 QOR, 5-minute lock) unlocked 5 minutes after
-the video deposit; the drill lock (0.5 QOR, 30-day) unlocks
-2026-12-18T00:59:57Z (drill proof tx `0xb8d33f02…d63d5`, block 10286542,
-recorded in [`deployments/drill-deposit.json`](deployments/drill-deposit.json)).
+Totals after the lock-4 withdrawal (19 Nov 2026): 2.0 QOR deposited, 1.25 QOR
+withdrawn, 0.75 QOR locked across 6 locks. Lock 2 (0.25 QOR, 7-day lock)
+is still locked until 22 Nov 2026; lock 4 (0.1 QOR, 5-minute lock) was
+withdrawn 19 Nov 2026 via `withdrawWithProof` (4,627-byte ML-DSA-87 proof,
+tx `0xfb7f4f1c…f183ec`, block 10335795, recorded in
+[`deployments/withdraw-lock4.json`](deployments/withdraw-lock4.json)); the
+drill lock (0.5 QOR, 30-day) unlocks 2026-12-18T00:59:57Z (drill proof tx
+`0xb8d33f02…d63d5`, block 10286542, recorded in
+[`deployments/drill-deposit.json`](deployments/drill-deposit.json)).
+
+## Security audit (QCAI)
+
+The contract source prepared for the QCAI two-stage audit (the dApp
+category's main requirement) is in [`flattened/`](flattened/) — the real
+contract only, no test mocks. See
+[`flattened/README.md`](flattened/README.md) for the audit steps. The audit
+itself is run from the QoreChain dashboard, not from this repo.
 
 ## How it works
 
@@ -139,6 +151,7 @@ npm run window open      # open a 1200-block / 10-tx authorisation window
 npm run compile          # compile the contracts (Hardhat)
 npm run deploy           # deploy to Diana testnet
 npm run usage            # real on-chain usage: deposits + both withdrawals
+npm run check-state      # read-only on-chain state check (no keys, no tx)
 ```
 
 ### Frontend
@@ -159,10 +172,15 @@ withdrawals still work with an already-open window.
 ```
 contracts/QuantumVault.sol        the vault + the two precompile interfaces
 contracts/mocks/                  MockPqcKeyStatus + MockPqcVerify (tests only)
+flattened/QuantumVault.flattened.sol  flattened contract source for the QCAI audit
+flattened/README.md               QCAI audit steps (run from the dashboard)
 test/QuantumVault.test.ts         25 Hardhat tests (mocked precompiles via hardhat_setCode)
 scripts/window.ts                 PQC key registration + EVM window management
 scripts/deploy.ts                 deploy to Diana testnet
 scripts/usage.ts                  real on-chain usage (deposits + both withdrawals)
+scripts/withdraw-lock4.ts         withdraw lock 4 with an ML-DSA-87 proof (19 Nov)
+scripts/drill-deposit.ts          Q-Day Drill deposit (0.5 QOR, 30-day lock)
+scripts/check-state.ts            read-only on-chain state check
 scripts/cosmos-hash.ts            EVM tx hash -> Cosmos tx hash (explorer links)
 scripts/gen-abi.ts                generate src/contract.ts from the Hardhat artifact
 src/                              Vite + React demo app
@@ -170,6 +188,8 @@ docs/demo.mp4                     demo video (real screen recording)
 docs/featured.png                 featured image
 deployments/testnet.json          deployment record (contract, tx hashes)
 deployments/usage.json            on-chain usage evidence (tx hashes, totals)
+deployments/drill-deposit.json    Q-Day Drill deposit record
+deployments/withdraw-lock4.json   lock-4 proof-withdrawal record (19 Nov)
 ```
 
 ## License

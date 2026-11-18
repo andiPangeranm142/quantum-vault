@@ -1,0 +1,28 @@
+{
+  "network": "qorechain-diana",
+  "chainId": 9800,
+  "contract": "0x0abdb86be55eb51cb090fd736651dff56d57715a",
+  "account": "0x766021EF474Bac02a206A53841099031a9B8E290",
+  "lockId": 4,
+  "amountQor": "0.1",
+  "method": "withdrawWithProof",
+  "proof": "ML-DSA-87 signature over withdrawalDigest(owner, 4, 0.1 QOR), verified on chain via pqcVerify",
+  "signatureBytes": 4627,
+  "tx": "0xfb7f4f1c1b7bee2aa780a83c425ead1336bef70e64867553bae8c1f7b8f183ec",
+  "cosmosTx": "195A76B552873D2A73CF9BD98492E7B04D0B797F7F6A9F6CE76D91B2E52EDED2",
+  "block": 10335795,
+  "status": "success",
+  "stateBefore": {
+    "block": 10335793,
+    "lockWithdrawn": false,
+    "contractBalanceQor": "0.85",
+    "totalWithdrawnQor": "1.15"
+  },
+  "stateAfter": {
+    "lockWithdrawn": true,
+    "contractBalanceQor": "0.75",
+    "totalWithdrawnQor": "1.25",
+    "totalLockedQor": "0.75"
+  },
+  "recordedAt": "2026-11-18T20:31:57.839Z"
+}
