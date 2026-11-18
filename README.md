@@ -50,10 +50,14 @@ All of it is real on-chain usage by the deployer account, recorded in
 | Withdraw lock 3 (with ML-DSA-87 proof) | 0.15 QOR | `0xbb908fc5…50a2a` |
 | Withdraw lock 0 (standard, live in the demo video) | 0.5 QOR | `0x63a7e34a…e1738` |
 | Deposit, 5-min lock (live in the demo video) | 0.1 QOR | lock 4 |
+| Deposit, 30-day lock (Q-Day Drill proof, drill account) | 0.5 QOR | drill-account lock 0, unlocks 2026-12-18 |
 
-Totals after the video run: 1.5 QOR deposited, 1.15 QOR withdrawn, 0.35 QOR
-locked across 5 locks. Lock 2 (0.25 QOR, 7-day lock) is still locked; lock 4
-(0.1 QOR, 5-minute lock) unlocks 5 minutes after the video deposit.
+Totals after the Q-Day Drill (18 Nov 2026): 2.0 QOR deposited, 1.15 QOR
+withdrawn, 0.85 QOR locked across 6 locks. Lock 2 (0.25 QOR, 7-day lock)
+is still locked; lock 4 (0.1 QOR, 5-minute lock) unlocked 5 minutes after
+the video deposit; the drill lock (0.5 QOR, 30-day) unlocks
+2026-12-18T00:59:57Z (drill proof tx `0xb8d33f02…d63d5`, block 10286542,
+recorded in [`deployments/drill-deposit.json`](deployments/drill-deposit.json)).
 
 ## How it works
 

@@ -1,0 +1,16 @@
+{
+  "network": "qorechain-diana",
+  "chainId": 9800,
+  "contract": "0x0abdb86be55eb51cb090fd736651dff56d57715a",
+  "account": "0x842870e050A251cBDfc071D68Bf3aE8251890c39",
+  "action": "drill-deposit",
+  "amount": "500000000000000000",
+  "amountQor": "0.5",
+  "lockId": 0,
+  "unlockTime": 1797555597,
+  "lockDays": 30,
+  "evmTx": "0xb8d33f0203be60ec7804f04a9cac279b25745fc71f5cfc598416a5e0ef5d63d5",
+  "cosmosTx": "FC450FE08218CB93577C43845AF84B89F85984E157DDD5E35072917C04D10E13",
+  "block": 10286542,
+  "ranAt": "2026-11-18T01:00:02.411Z"
+}
