@@ -125,9 +125,13 @@ with raw `eth_call`s before the contract was written:
   anyone. There is no recovery backdoor, by design — but it is a real risk
   for a real vault, and a production version would need a key-rotation or
   social-recovery story.
-- **Testnet only.** Nothing here has real value. The contract is unaudited
-  beyond its test suite (25 Hardhat tests, including mocked-precompile tests
-  of every revert path) and the live verification described above.
+- **Testnet only.** Nothing here has real value. Assurance comes from the
+  test suite (25 Hardhat tests, including mocked-precompile tests of every
+  revert path, plus a Foundry suite: 3 handler-based invariants over 256
+  runs / 25,600 calls, 5 fuzz tests at 256 runs each, 2 unit tests), the
+  QCAI stage 1 audit (85/100, MEDIUM, QUANTUM-SAFE — see
+  [docs/QCAI-stage1-triage.md](docs/QCAI-stage1-triage.md)), and the live
+  verification described above.
 
 ## Development
 
@@ -138,6 +142,7 @@ transaction.
 ```bash
 npm install
 npm test            # 25 Hardhat tests (local network, mocked precompiles)
+npm run test:forge  # Foundry suite: invariants + fuzz + unit (needs Foundry)
 npm run typecheck   # both tsconfigs (Hardhat side + Vite app side)
 ```
 
@@ -175,6 +180,7 @@ contracts/mocks/                  MockPqcKeyStatus + MockPqcVerify (tests only)
 flattened/QuantumVault.flattened.sol  flattened contract source for the QCAI audit
 flattened/README.md               QCAI audit steps (run from the dashboard)
 test/QuantumVault.test.ts         25 Hardhat tests (mocked precompiles via hardhat_setCode)
+test/foundry/                     Foundry suite: handler invariants, fuzz tests, reentrancy test
 scripts/window.ts                 PQC key registration + EVM window management
 scripts/deploy.ts                 deploy to Diana testnet
 scripts/usage.ts                  real on-chain usage (deposits + both withdrawals)
