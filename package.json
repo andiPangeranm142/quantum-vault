@@ -13,6 +13,7 @@
     "usage": "tsx --env-file=../.env scripts/usage.ts",
     "check-state": "tsx --env-file=../.env scripts/check-state.ts",
     "withdraw-lock4": "tsx --env-file=../.env scripts/withdraw-lock4.ts",
+    "withdraw-lock2": "tsx --env-file=../.env scripts/withdraw-lock2.ts",
     "gen-abi": "tsx scripts/gen-abi.ts",
     "dev": "vite",
     "build": "tsc --noEmit -p tsconfig.app.json && vite build",

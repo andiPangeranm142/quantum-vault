@@ -75,12 +75,32 @@
       "tx": "0xcc83668d6107434e612e926c6242ef8eabb8dda3afa1e8f6683263d7d7ab4cf7",
       "cosmosTx": "28339BCC7E7D065407DEE4B1D93C96FD4CBF883A3675EF93637510AA27A3E1B0",
       "block": 10151933
+    },
+    {
+      "label": "Withdraw lock 4 (with ML-DSA-87 proof)",
+      "functionName": "withdrawWithProof",
+      "args": "[\"4\"]",
+      "value": "0",
+      "tx": "0xfb7f4f1c1b7bee2aa780a83c425ead1336bef70e64867553bae8c1f7b8f183ec",
+      "cosmosTx": "195A76B552873D2A73CF9BD98492E7B04D0B797F7F6A9F6CE76D91B2E52EDED2",
+      "block": 10335795,
+      "proof": "4627-byte ML-DSA-87 signature, recorded in deployments/withdraw-lock4.json"
+    },
+    {
+      "label": "Withdraw lock 2 (with ML-DSA-87 proof)",
+      "functionName": "withdrawWithProof",
+      "args": "[\"2\"]",
+      "value": "0",
+      "tx": "0x60fb99e6beb95288295589b2afd4138286bcc524c74fd591a27bd522290571dd",
+      "cosmosTx": "B9C87F93587A0EF7646E1BAF6A86A257DF639570F2FCBBB16A197C067C864EA1",
+      "block": 10582783,
+      "proof": "4627-byte ML-DSA-87 signature, recorded in deployments/withdraw-lock2.json"
     }
   ],
   "totals": {
-    "totalLockedQor": "0.35",
+    "totalLockedQor": "0",
     "totalDepositedQor": "1.5",
-    "totalWithdrawnQor": "1.15",
+    "totalWithdrawnQor": "1.5",
     "lockCount": 5
   },
   "locks": [
@@ -103,7 +123,7 @@
       "amountQor": "0.25",
       "unlockTime": 1795375315,
       "unlockTimeIso": "2026-11-22T19:21:55.000Z",
-      "withdrawn": false
+      "withdrawn": true
     },
     {
       "lockId": 3,
@@ -117,8 +137,8 @@
       "amountQor": "0.1",
       "unlockTime": 1794771698,
       "unlockTimeIso": "2026-11-15T19:41:38.000Z",
-      "withdrawn": false
+      "withdrawn": true
     }
   ],
-  "recordedAt": "2026-11-15T19:40:54.304Z"
+  "recordedAt": "2026-11-23T00:01:22.091Z"
 }

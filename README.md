@@ -44,7 +44,7 @@ All of it is real on-chain usage by the deployer account, recorded in
 | --- | --- | --- |
 | Deposit, 90s lock (first usage run) | 0.5 QOR | lock 0 |
 | Deposit, 90s lock | 0.5 QOR | lock 1 |
-| Deposit, 7-day lock | 0.25 QOR | lock 2 (still locked) |
+| Deposit, 7-day lock | 0.25 QOR | lock 2 (withdrawn 23 Nov 2026) |
 | Deposit, 90s lock | 0.15 QOR | lock 3 |
 | Withdraw lock 1 (standard) | 0.5 QOR | `0xd88353bf…2bdf74` |
 | Withdraw lock 3 (with ML-DSA-87 proof) | 0.15 QOR | `0xbb908fc5…50a2a` |
@@ -52,12 +52,16 @@ All of it is real on-chain usage by the deployer account, recorded in
 | Deposit, 5-min lock (live in the demo video) | 0.1 QOR | lock 4 |
 | Deposit, 30-day lock (Q-Day Drill proof, drill account) | 0.5 QOR | drill-account lock 0, unlocks 2026-12-18 |
 | Withdraw lock 4 (with ML-DSA-87 proof) | 0.1 QOR | `0xfb7f4f1c…f183ec` |
+| Withdraw lock 2 (with ML-DSA-87 proof) | 0.25 QOR | `0x60fb99e6…571dd` |
 
-Totals after the lock-4 withdrawal (19 Nov 2026): 2.0 QOR deposited, 1.25 QOR
-withdrawn, 0.75 QOR locked across 6 locks. Lock 2 (0.25 QOR, 7-day lock)
-is still locked until 22 Nov 2026; lock 4 (0.1 QOR, 5-minute lock) was
-withdrawn 19 Nov 2026 via `withdrawWithProof` (4,627-byte ML-DSA-87 proof,
-tx `0xfb7f4f1c…f183ec`, block 10335795, recorded in
+Totals after the lock-2 withdrawal (23 Nov 2026): 2.0 QOR deposited, 1.5 QOR
+withdrawn, 0.5 QOR locked across 6 locks — the only remaining lock is the
+drill lock (0.5 QOR, 30-day, unlocks 2026-12-18). Lock 2 (0.25 QOR, 7-day lock)
+was withdrawn 23 Nov 2026 via `withdrawWithProof` (4,627-byte ML-DSA-87 proof,
+tx `0x60fb99e6…571dd`, block 10582783, recorded in
+[`deployments/withdraw-lock2.json`](deployments/withdraw-lock2.json)); lock 4
+(0.1 QOR, 5-minute lock) was withdrawn 19 Nov 2026 via `withdrawWithProof`
+(4,627-byte ML-DSA-87 proof, tx `0xfb7f4f1c…f183ec`, block 10335795, recorded in
 [`deployments/withdraw-lock4.json`](deployments/withdraw-lock4.json)); the
 drill lock (0.5 QOR, 30-day) unlocks 2026-12-18T00:59:57Z (drill proof tx
 `0xb8d33f02…d63d5`, block 10286542, recorded in
