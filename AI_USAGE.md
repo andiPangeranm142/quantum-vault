@@ -35,12 +35,18 @@ owner's own key) and from the author's own Quantum Flip (a coin-flip game).
    stale type definitions.
 3. **Verify at every step.** Hardhat compile; 25 Hardhat tests on a local
    network with mocked precompiles installed at their real addresses via
-   `hardhat_setCode`; `tsc --noEmit` on both tsconfigs; `vite build` for
-   the frontend; a Playwright render check of the live demo after every
-   deploy. On-chain verification was done the same session: the contract
-   deployed at `0x0abdb86be55eb51cb090fd736651dff56d57715a`, and every
-   transaction hash in this repo was read back from the chain. Nothing in
-   this repo claims an on-chain result that has not happened.
+   `hardhat_setCode`; 8 Foundry test entries (5 parameterized fuzz tests,
+   a reentrancy double-withdraw test, 3 handler-based invariants over
+   25,600 calls, and a handler-counts test); `tsc --noEmit` on both
+   tsconfigs; `vite build` for the frontend; a Playwright render check
+   of the live demo after every deploy. On-chain verification was done
+   the same session: the contract deployed at
+   `0x0abdb86be55eb51cb090fd736651dff56d57715a`, and every transaction
+   hash in this repo was read back from the chain. The contract also
+   went through a two-stage QCAI audit (19–20 Nov 2026): 85/100, MEDIUM,
+   QUANTUM-SAFE in both stages, with every finding triaged (see
+   `docs/QCAI-stage1-triage.md`, `docs/QCAI-stage2-triage.md`). Nothing
+   in this repo claims an on-chain result that has not happened.
 4. **Secrets discipline.** A fresh testnet-only wallet was generated for
    this project (funded with 5 testnet QOR); its mnemonic and private key
    live only in a mode-`600` file outside the repo (`../deployer.json`,
@@ -56,11 +62,23 @@ owner's own key) and from the author's own Quantum Flip (a coin-flip game).
 - `contracts/mocks/MockPqcKeyStatus.sol`, `MockPqcVerify.sol` — local
   precompile stand-ins for tests (registry-driven, tests only).
 - `test/QuantumVault.test.ts` — 25 Hardhat tests (deposit rules, every
-  withdrawal revert path, proof wiring including wrong-pubkey and
-  wrong-digest rejection, digest construction, views).
+  withdrawal revert path except TransferFailed, proof wiring including
+  wrong-pubkey and wrong-digest rejection, digest construction, views).
+- `test/foundry/` — Foundry suites (added 19 Nov 2026):
+  `QuantumVaultFuzz.t.sol` (5 parameterized fuzz tests + the reentrancy
+  double-withdraw test), `QuantumVaultInvariant.t.sol` +
+  `QuantumVaultHandler.sol` (3 handler-based invariants over 25,600
+  calls + the handler-counts test).
 - `scripts/deploy.ts`, `scripts/usage.ts`, `scripts/cosmos-hash.ts`,
   `scripts/gen-abi.ts` — deployment, real on-chain usage, explorer-hash
   resolution, ABI generation.
+- `scripts/withdraw-lock2.ts`, `scripts/withdraw-lock4.ts`,
+  `scripts/check-state.ts` — the ML-DSA-87 proof withdrawals of locks 2
+  (23 Nov 2026) and 4 (19 Nov 2026), and live state checks.
+- `SECURITY.md`, `docs/QCAI-stage1-triage.md`,
+  `docs/QCAI-stage2-triage.md` — the security documentation and the
+  triage of both QCAI audit stages (85/100 each; the audit PDFs are in
+  `docs/`).
 - `scripts/window.ts` — the PQC key registration + EVM window helper,
   reused from the author's Quantum Flip repo (the author's own code).
 - `src/*` — the React frontend (vault totals, deposit form, lock list with
@@ -118,8 +136,9 @@ error output and source rather than guessing:
    unaffected — its window line degrades gracefully, as documented in
    the README.
 
-All fixes are covered by the passing test suite (`npm test`: 25/25) and
-by the verified on-chain run (`deployments/usage.json`).
+All fixes are covered by the passing test suites (`npm test`: 25/25
+Hardhat; `forge test`: 8/8 Foundry) and by the verified on-chain run
+(`deployments/usage.json`).
 
 ## Human contribution
 
@@ -132,17 +151,19 @@ by the verified on-chain run (`deployments/usage.json`).
   QoreX), and the final submission (the project page is created by the
   human's main agent after this build verifies).
 
-## Verification status (16 Nov 2026)
+## Verification status (updated 25 Nov 2026)
 
 | Check | Result |
 | --- | --- |
 | Hardhat compile (solc 0.8.24) | Passes |
 | `npm test` (contract, local EVM, mocked precompiles) | 25/25 pass |
+| `forge test` (fuzz + invariants) | 8/8 pass (5 fuzz, 1 reentrancy, 3 invariants over 25,600 calls, 1 handler-counts) |
 | `npm run typecheck` (both tsconfigs) | Passes |
 | `npm run build` (frontend) | Passes |
 | No secrets in repo / git history | Checked (see below) |
 | Testnet deploy | **Done 15 Nov 2026** — contract `0x0abdb86b…715a`, deploy tx `0x5821fcc…a1ddf` |
-| On-chain usage | **Done** — 5 deposits (1.5 QOR), 3 withdrawals (1.15 QOR): standard `0xd88353bf…`, proof `0xbb908fc5…` (ML-DSA-87 signature verified on chain), standard in demo video `0x63a7e34a…`; 0.35 QOR still locked across 2 locks |
+| On-chain usage | **Done** — 6 locks: 2.0 QOR deposited, 1.5 QOR withdrawn, 0.5 QOR still locked (drill lock only, unlocks 18 Dec 2026). Three withdrawals with ML-DSA-87 proof: lock 3 `0xbb908fc5…`, lock 4 `0xfb7f4f1c…`, lock 2 `0x60fb99e6…` (23 Nov 2026) |
+| QCAI two-stage audit | Stage 1 + stage 2: **85/100, MEDIUM, QUANTUM-SAFE** (19–20 Nov 2026; triage in `docs/QCAI-stage1-triage.md`, `docs/QCAI-stage2-triage.md`) |
 | Demo video (real recording) | Done + verified on-chain |
 | Live demo (GitHub Pages) | Done — https://andipangeranm142.github.io/quantum-vault/ |
 
